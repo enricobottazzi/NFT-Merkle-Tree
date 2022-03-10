@@ -3,11 +3,11 @@ Set of smart contracts to minting an NFT and committing the mint data to a Merkl
 
 This repo refers to https://zku.one/course-schedule/assignment-1-due 
 
-Question: Minting an NFT and committing the mint data to a Merkle Tree
+## Question: Minting an NFT and committing the mint data to a Merkle Tree
 
-Q1: Create an ERC721 contract that can mint an NFT to any address. The token URI should be on-chain and should include a name field and a description field. [Bonus points for well-commented codebase]
+### Q1: Create an ERC721 contract that can mint an NFT to any address. The token URI should be on-chain and should include a name field and a description field. [Bonus points for well-commented codebase]
 
-A1: Smart contract => onchainNFT.sol
+Smart contract => onchainNFT.sol
 
 The credit to the contract goes to https://medium.com/coinmonks/how-to-create-on-chain-nfts-with-solidity-1e20ff9dd87e. Using this contract I am able to incorporate user content into an NFT at mint without having to rely on external storage solutions. 
 
@@ -38,9 +38,9 @@ As a bonus point you can also access the image of the NFT, copying and pasting t
 
 ![NFT image](screenshots/screenshot1.png)
 
-Q2: Commit the msg.sender, receiver address, tokenId, and tokenURI to a Merkle tree using the keccak256 hash function. Update the Merkle tree using a minimal amount of gas.
+### Q2: Commit the msg.sender, receiver address, tokenId, and tokenURI to a Merkle tree using the keccak256 hash function. Update the Merkle tree using a minimal amount of gas.
 
-A2: To assemble and dinamically update the merkle tree I'm leveraging this library https://github.com/QuarkChain/DynamicMerkleTree/blob/abe6c7ee8f2fef105649943d5e329e5f5e697f8d/contracts/DynamicMerkleTree.sol
+To assemble and dinamically update the merkle tree I'm leveraging this library https://github.com/QuarkChain/DynamicMerkleTree/blob/abe6c7ee8f2fef105649943d5e329e5f5e697f8d/contracts/DynamicMerkleTree.sol
 
 Everytime a new NFT is minted the DynamicMerkleTree.append function is called. It appends a new leaf to the merkle tree updating the rootHash state variable stored on the onChainNFT contract. In this way the contract only stores the merkle root making it more efficient. The merkle root acts as identifier of the entire merkle tree structure and can be used to verifiy if a set of msg.sender, receiver address, tokenId, and tokenURI belongs to the merkle tree.
 
@@ -50,9 +50,7 @@ The best way to do so would be using the merkletreeJs library.
 
 Run _verify to calculate if an hash of msg.sender, receiver address, tokenId, and tokenURI belongs to the merkle tree.
 
-Q3: Use remix to mint a couple of NFTs to the sender address or to other addresses. Include screenshots of the transactions and the amount of gas spent per transaction in your repo.
-
-A3:
+### Q3: Use remix to mint a couple of NFTs to the sender address or to other addresses. Include screenshots of the transactions and the amount of gas spent per transaction in your repo.
 
 I used the script `scripts/mint.js` to do that 
 
